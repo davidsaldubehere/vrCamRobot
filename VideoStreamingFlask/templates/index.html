@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="mobile-web-app-capable" content="yes">
+		<title>VR CAM</title>
+		<style>
+	*{
+		margin: 0;
+	}
+	#top{
+		display: flex;
+		
+		width: 100%;
+		margin: 10px;
+	}
+	#controls{
+		display: flex;
+		
+		width: 100%;
+		margin: 10px;
+	}
+	button{
+		border: 2px solid black;
+		border-radius: 5px;
+		font-size: 40px;
+		color: white;
+		height: 50vh;
+		width: 50%;
+		background-color: rgb(77, 77, 77);
+	}
+		</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<main>
+			<div id="top">
+				<button onclick="send('true', 'true')" style="background-color: green;">
+					Start
+				</button>
+				<button onclick="send('false', 'false')" style="background-color: red;">
+					Stop
+				</button>
+
+			</div>
+			<div id="controls">
+				<button>
+					Left
+				</button>
+
+				<button>
+					Right
+				</button>
+			</div>
+	 <script defer>
+		function send(left, right){
+			$.ajax({
+				url: '/move',
+				type: 'POST',
+				contentType: 'application/json;charset=UTF-8',
+				data:  JSON.stringify({
+						'left': left,
+						'right': right
+				}),
+				success: function(msg) {
+						console.log("pass");
+				}
+		});  
+		}
+
+
+	 </script>
+	</body>
+</html>
