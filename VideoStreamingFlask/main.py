@@ -17,9 +17,9 @@ def move():
         pass
     elif right == "true":
         pass
-    else{
+    else:
         explorerhat.motor.forwards(0)
-    }
+    
     return "moving"
 
 
