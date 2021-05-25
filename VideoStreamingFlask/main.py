@@ -14,7 +14,9 @@ def move():
     if left == "true" and right == "true":
         explorerhat.motor.forwards(100)
     elif left == "true":
-        pass
+        explorerhat.motor.one.forwards(50)
+        time.sleep(1)
+        explorerhat.motor.forwards(100)
     elif right == "true":
         pass
     else:
