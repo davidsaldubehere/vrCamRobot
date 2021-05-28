@@ -9,18 +9,25 @@ def index():
 
 @app.route('/move',methods = ['POST', 'GET'])
 def move():
+    tweakedSpeed = 95
     left = request.json['left']
     right = request.json['right']
+    direction = request.json['direction']
     if left == "true" and right == "true":
-        explorerhat.motor.forwards(100)
+        explorerhat.motor.one.forwards(tweakedSpeed)
+        explorerhat.motor.two.forwards(100)
     elif left == "true":
         explorerhat.motor.two.forwards(50)
         time.sleep(1)
-        explorerhat.motor.forwards(100)
+        explorerhat.motor.one.forwards(tweakedSpeed)
+        explorerhat.motor.two.forwards(100)
     elif right == "true":
         explorerhat.motor.one.forwards(50)
         time.sleep(1)
-        explorerhat.motor.forwards(100)
+        explorerhat.motor.one.forwards(tweakedSpeed)
+        explorerhat.motor.two.forwards(100)
+    elif direction == "reverse":
+        explorerhat.motor.backwards(100)
     else:
         explorerhat.motor.forwards(0)
     

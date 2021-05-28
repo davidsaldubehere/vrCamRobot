@@ -34,38 +34,39 @@
 	<body>
 		<main>
 			<div id="top">
-				<button onclick="send('true', 'true')" style="background-color: green;">
+				<button onclick="send('true', 'true', 'forward')" style="background-color: green;">
 					Start
 				</button>
-				<button onclick="send('false', 'false')" style="background-color: red;">
+				<button onclick="send('false', 'false', 'forward')" style="background-color: red;">
 					Stop
 				</button>
-				<button>
+				<button onclick="send('false', 'false', 'reverse')">
 					Reverse
 				</button>
 
 
 			</div>
 			<div id="controls">
-				<button onclick="send('true', 'false')">
+				<button onclick="send('true', 'false', 'forward')">
 					Left
 				</button>
 
-				<button onclick="send('false', 'true')">
+				<button onclick="send('false', 'true', 'forward')">
 					Right
 				</button>
 			</div>
 			<button id="goFS">Go fullscreen</button>
 		</main>
 	 <script defer>
-		function send(left, right){
+		function send(left, right, direction){
 			$.ajax({
 				url: '/move',
 				type: 'POST',
 				contentType: 'application/json;charset=UTF-8',
 				data:  JSON.stringify({
 						'left': left,
-						'right': right
+						'right': right,
+						'direction': direction
 				}),
 				success: function(msg) {
 						console.log("pass");
@@ -74,9 +75,8 @@
 		}
 		var goFS = document.getElementById("goFS");
       	goFS.addEventListener("click", function() {
-        	document.body.requestFullscreen();
+        	document.body.webkitRequestFullScreen();
       	}, false);
-		document.documentElement.webkitRequestFullScreen();
 
 
 
